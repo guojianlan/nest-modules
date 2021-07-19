@@ -7,7 +7,6 @@ import { MyLogger } from './logger.service';
   providers: [MyLogger],
   exports: [MyLogger],
 })
-@Global()
 export class LoggerModule {
   constructor(private readonly moduleRef: ModuleRef) {
     console.log('LoggerModule----');
@@ -16,9 +15,10 @@ export class LoggerModule {
     console.log('register');
     const providers = createLoggerProvider(options);
     return {
+      
       module: LoggerModule,
-      providers: providers,
-      exports: providers,
+      providers: [LoggerModule,...providers],
+      exports: [LoggerModule,...providers],
     };
   }
 }

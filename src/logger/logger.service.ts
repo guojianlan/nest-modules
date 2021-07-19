@@ -1,7 +1,16 @@
-import { LoggerService } from '@nestjs/common';
+import { Injectable, LoggerService ,Scope } from '@nestjs/common';
 import * as winston from 'winston';
-export class MyLogger implements LoggerService {
+let x = 0;
+
+export class MyLogger {
   context: string;
+  constructor(context?: string) {
+   
+    console.log('MyLogger init constructor --test' + ++x);
+    if (context) {
+      this.context = context;
+    }
+  }
   log(message: string) {
     /* your implementation */
 
